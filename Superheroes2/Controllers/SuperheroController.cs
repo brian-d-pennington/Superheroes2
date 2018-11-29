@@ -1,39 +1,89 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Superheroes2.Controllers
 {
-    public class SuperheroController : ApiController
+    public class SuperheroController : Controller
     {
-        // GET: api/Superhero
-        public IEnumerable<string> Get()
+        // GET: Superhero
+        public ActionResult Index()
         {
-            return new string[] { "value1", "value2" };
+            return View();
         }
 
-        // GET: api/Superhero/5
-        public string Get(int id)
+        // GET: Superhero/Details/5
+        public ActionResult Details(int id)
         {
-            return "value";
+            return View();
         }
 
-        // POST: api/Superhero
-        public void Post([FromBody]string value)
+        // GET: Superhero/Create
+        public ActionResult Create()
         {
+            return View();
         }
 
-        // PUT: api/Superhero/5
-        public void Put(int id, [FromBody]string value)
+        // POST: Superhero/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
         {
+            try
+            {
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
-        // DELETE: api/Superhero/5
-        public void Delete(int id)
+        // GET: Superhero/Edit/5
+        public ActionResult Edit(int id)
         {
+            return View();
+        }
+
+        // POST: Superhero/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Superhero/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Superhero/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
