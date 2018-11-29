@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Superheroes2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,14 @@ namespace Superheroes2.Controllers
 {
     public class SuperheroController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
+
         // GET: Superhero
         public ActionResult Index()
         {
-            return View();
+            List<Superhero> superheroes = new List<Superhero>();
+            superheroes = db.Superheroes.ToList();
+            return View(superheroes);
         }
 
         // GET: Superhero/Details/5
@@ -23,17 +28,18 @@ namespace Superheroes2.Controllers
         // GET: Superhero/Create
         public ActionResult Create()
         {
+            ViewBag.ID = new SelectList(db.Superheroes, "ID", "SuperheroName"); // test
             return View();
         }
 
         // POST: Superhero/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Superhero superhero)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                db.Superheroes.Add(superhero);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -50,7 +56,7 @@ namespace Superheroes2.Controllers
 
         // POST: Superhero/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
@@ -72,12 +78,12 @@ namespace Superheroes2.Controllers
 
         // POST: Superhero/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                db.Superheroes.Remove(superhero);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
