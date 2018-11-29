@@ -23,7 +23,7 @@ namespace Superheroes2
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-solar.css",
+                      "~/Content/bootstrap-slate.css",
                       "~/Content/site.css"));
         }
     }
