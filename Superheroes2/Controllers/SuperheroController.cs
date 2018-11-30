@@ -22,15 +22,7 @@ namespace Superheroes2.Controllers
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return RedirectToAction("Index");
-            }
             Superhero superhero = db.Superheroes.Find(id);
-            if (superhero == null)
-            {
-                return HttpNotFound();
-            }
             return View(superhero);
         }
 
@@ -67,10 +59,15 @@ namespace Superheroes2.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Superhero superhero)
         {
+            Superhero superheroToEdit = db.Superheroes.Find(id);
             try
             {
-                // TODO: Add update logic here
-
+                superheroToEdit.SuperheroName = superhero.SuperheroName;
+                superheroToEdit.AlterEgo = superhero.AlterEgo;
+                superheroToEdit.PrimaryAbility = superhero.PrimaryAbility;
+                superheroToEdit.SecondaryAbility = superhero.SecondaryAbility;
+                superheroToEdit.CatchPhrase = superhero.CatchPhrase;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -89,9 +86,10 @@ namespace Superheroes2.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Superhero superhero)
         {
+            Superhero superheroToDelete = db.Superheroes.Find(id);
             try
             {
-                db.Superheroes.Remove(superhero);
+                db.Superheroes.Remove(superheroToDelete);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
