@@ -52,7 +52,7 @@ namespace Superheroes2.Controllers
         // GET: Superhero/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(db.Superheroes.Find(id));
         }
 
         // POST: Superhero/Edit/5
@@ -79,7 +79,7 @@ namespace Superheroes2.Controllers
         // GET: Superhero/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(db.Superheroes.Find(id));
         }
 
         // POST: Superhero/Delete/5
