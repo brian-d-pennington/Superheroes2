@@ -14,21 +14,30 @@ namespace Superheroes2.Controllers
         // GET: Superhero
         public ActionResult Index()
         {
-            List<Superhero> superheroes = new List<Superhero>();
-            superheroes = db.Superheroes.ToList();
-            return View(superheroes);
+            List<Superhero> superheroesList = new List<Superhero>();
+            superheroesList = db.Superheroes.ToList();
+            return View(superheroesList);
         }
 
         // GET: Superhero/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            Superhero superhero = db.Superheroes.Find(id);
+            if (superhero == null)
+            {
+                return HttpNotFound();
+            }
+            return View(superhero);
         }
 
         // GET: Superhero/Create
         public ActionResult Create()
         {
-            ViewBag.ID = new SelectList(db.Superheroes, "ID", "SuperheroName"); // test
+            ViewBag.ID = new SelectList(db.Superheroes, "ID", "SuperheroName");
             return View();
         }
 

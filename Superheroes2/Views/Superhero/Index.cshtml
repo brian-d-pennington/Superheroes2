@@ -1,11 +1,16 @@
 ﻿@model IEnumerable<Superheroes2.Models.Superhero>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Index";
 }
 
-<h2>List</h2>
+<h2>Superheroes</h2>
 
+<div class="row">
+    <div class="col-md-12">
+        <img src="http://3.bp.blogspot.com/-4qvn0cmsa5o/VIEGvWS1zpI/AAAAAAAAERE/98Dgw6C064k/s1600/KrystenRitter.jpg" />
+    </div>
+</div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -14,7 +19,7 @@
         <th>
             @Html.DisplayNameFor(model => model.SuperheroName)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.AlterEgo)
         </th>
         <th>
@@ -24,7 +29,7 @@
             @Html.DisplayNameFor(model => model.SecondaryAbility)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CatchPhrase)
+            @Html.DisplayNameFor(model => model.CatchPhrase)*@
         </th>
         <th></th>
     </tr>
@@ -34,7 +39,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.SuperheroName)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.AlterEgo)
         </td>
         <td>
@@ -45,7 +50,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CatchPhrase)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
